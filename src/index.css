@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --brand-primary: #3477bc;
+    --brand-secondary: #2559cc;
+    --brand-purple: #322366;
+    --brand-dark: #080b14;
+    --brand-surface: #0f1526;
+    --brand-card: #131b31;
+    --brand-border: #1e2a4a;
+  }
+
+  html {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  [dir="rtl"] {
+    font-family: 'Cairo', 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, .font-heading {
+    font-family: 'Outfit', 'Cairo', system-ui, sans-serif;
+  }
+}
+
+/* Custom Glow & Glassmorphism */
+.glass-panel {
+  background: rgba(15, 21, 38, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(52, 119, 188, 0.15);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(19, 27, 49, 0.85);
+  border-color: rgba(52, 119, 188, 0.35);
+  box-shadow: 0 12px 35px -8px rgba(37, 89, 204, 0.25);
+  transform: translateY(-3px);
+}
+
+.brand-gradient-text {
+  background: linear-gradient(135deg, #ffffff 10%, #60a5fa 50%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-gradient-primary {
+  background: linear-gradient(135deg, #3477bc 0%, #2559cc 50%, #322366 100%);
+}
+
+.brand-gradient-accent {
+  background: linear-gradient(135deg, #38bdf8 0%, #2559cc 60%, #4f46e5 100%);
+}
+
+.brand-glow {
+  box-shadow: 0 0 40px -10px rgba(52, 119, 188, 0.35);
+}
+
+.brand-glow-lg {
+  box-shadow: 0 0 70px -15px rgba(37, 89, 204, 0.45);
+}
+
+/* Subtle Animated Background Grid */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(52, 119, 188, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(52, 119, 188, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(circle at 50% 20%, rgba(37, 89, 204, 0.15) 0%, rgba(50, 35, 102, 0.08) 45%, transparent 70%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080b14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e2a4a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3477bc;
+}
+
