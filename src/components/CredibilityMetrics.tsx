@@ -39,7 +39,7 @@ export const CredibilityMetrics: React.FC<CredibilityMetricsProps> = ({ lang }) 
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Headline */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-8" data-aos="fade-up">
           <span className="text-xs font-bold uppercase tracking-widest text-[#3477BC] bg-[#3477BC]/10 px-3 py-1 rounded-full border border-[#3477BC]/20">
             {isAr ? 'مؤشرات الأداء والخبرة' : 'Track Record & Performance'}
           </span>
@@ -59,13 +59,15 @@ export const CredibilityMetrics: React.FC<CredibilityMetricsProps> = ({ lang }) 
             return (
               <div
                 key={stat.id}
+                data-aos="fade-up"
+                data-aos-delay={idx * 100}
                 className="bg-[#0B1120] hover:bg-[#0F172A] border border-slate-800 hover:border-slate-700 rounded-2xl p-4 sm:p-5 transition-all flex flex-col justify-between group shadow-sm"
               >
                 <div>
                   <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-white group-hover:text-sky-400 transition-colors font-mono mb-1">
                     {displayValue}
                   </div>
-                  <div className="text-xs sm:text-sm font-semibold text-slate-200 mb-1.5">
+                  <div className="text-xs sm:text-sm font-semibold text-slate-200 mb-1.5 font-sans">
                     {isAr ? stat.labelAr : stat.label}
                   </div>
                 </div>

@@ -32,7 +32,7 @@ export const FeaturedCaseStudies: React.FC<FeaturedCaseStudiesProps> = ({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-12">
+        <div className="max-w-3xl mb-12" data-aos="fade-up">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3477BC]/10 border border-[#3477BC]/25 text-sky-400 text-xs font-semibold mb-3 uppercase tracking-wider">
             <span>{isAr ? 'منهجية معتمدة ونتائج موثقة' : 'Verified Case Studies'}</span>
           </div>
@@ -59,7 +59,7 @@ export const FeaturedCaseStudies: React.FC<FeaturedCaseStudiesProps> = ({
         </div>
 
         {/* Tab Selector Buttons for the Case Studies */}
-        <div className="flex flex-wrap gap-2.5 mb-8">
+        <div className="flex flex-wrap gap-2.5 mb-8" data-aos="fade-up" data-aos-delay="100">
           {featuredCaseStudies.map((study, idx) => {
             const isActive = activeTab === idx;
             return (
@@ -67,11 +67,10 @@ export const FeaturedCaseStudies: React.FC<FeaturedCaseStudiesProps> = ({
                 key={study.id}
                 type="button"
                 onClick={() => setActiveTab(idx)}
-                className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${
-                  isActive
+                className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 ${isActive
                     ? 'bg-gradient-to-r from-[#3477BC] to-[#2559CC] text-white shadow-md'
                     : 'bg-[#0B1120] text-slate-400 border border-slate-800 hover:text-slate-200 hover:border-slate-700'
-                }`}
+                  }`}
               >
                 <Building2 className="w-3.5 h-3.5 text-sky-300" />
                 <span>{isAr ? study.clientAr : study.client}</span>
@@ -81,7 +80,11 @@ export const FeaturedCaseStudies: React.FC<FeaturedCaseStudiesProps> = ({
         </div>
 
         {/* Active Detailed Case Study Card */}
-        <div className="bg-[#0B1120] border border-slate-800 rounded-3xl overflow-hidden shadow-xl">
+        <div
+          data-aos="fade-up"
+          data-aos-delay="200"
+          className="bg-[#0B1120] border border-slate-800 rounded-3xl overflow-hidden shadow-xl"
+        >
           <div className="grid grid-cols-1 lg:grid-cols-12">
             {/* Left Side: Visual & High Impact Metrics */}
             <div className="lg:col-span-5 relative flex flex-col justify-between bg-slate-900 overflow-hidden min-h-[340px] lg:min-h-[460px]">

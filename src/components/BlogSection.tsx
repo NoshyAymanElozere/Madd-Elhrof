@@ -25,7 +25,7 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ lang }) => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-12">
+        <div className="max-w-3xl mb-12" data-aos="fade-up">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3477BC]/10 border border-[#3477BC]/25 text-sky-400 text-xs font-semibold mb-3 uppercase tracking-wider">
             <BookOpen className="w-3.5 h-3.5" />
             <span>{isAr ? 'الرؤى والتحليلات الاستراتيجية' : 'Insights & Briefings'}</span>
@@ -52,12 +52,14 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ lang }) => {
           </p>
         </div>
 
-        {/* Blog Posts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {blogPosts.map((post) => (
+        {/* Blog Posts Grid (At most 4 cards) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {blogPosts.slice(0, 4).map((post, idx) => (
             <div
               key={post.id}
               onClick={() => setSelectedPost(post)}
+              data-aos="fade-up"
+              data-aos-delay={idx * 100}
               className="bg-[#0B1120] border border-slate-800 hover:border-slate-700 rounded-2xl overflow-hidden transition-all duration-300 flex flex-col cursor-pointer group shadow-sm"
             >
               {/* Featured Image */}

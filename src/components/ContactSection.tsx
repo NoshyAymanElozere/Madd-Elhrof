@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Language, ContactFormData } from '../types';
 import { agencyInfo } from '../data/agencyData';
 import {
@@ -7,11 +7,7 @@ import {
   Mail,
   Clock,
   Send,
-  UploadCloud,
   CheckCircle2,
-  Paperclip,
-  X,
-  MessageSquare,
   Building2,
 } from 'lucide-react';
 
@@ -25,77 +21,17 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   prefilledScope = '',
 }) => {
   const isAr = lang === 'ar';
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [formData, setFormData] = useState<ContactFormData>({
-    fullName: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
-    company: '',
-    serviceRequired: 'Brand Strategy & Identity',
-    budgetRange: '$10k - $25k',
     message: prefilledScope ? `Scope details from Estimator:\n${prefilledScope}\n\n` : '',
-    timeline: '1-2 Months',
   });
 
-  const [attachedFiles, setAttachedFiles] = useState<File[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [dragActive, setDragActive] = useState(false);
-
-  const serviceOptions = [
-    { value: 'Brand Strategy & Identity', label: 'Brand Strategy & Identity', labelAr: 'الهوية والعلامة التجارية' },
-    { value: 'Performance Digital Marketing', label: 'Performance Digital Marketing', labelAr: 'التسويق الرقمي والأداء' },
-    { value: 'Social Media Management', label: 'Social Media Management', labelAr: 'إدارة منصات التواصل والمحتوى' },
-    { value: 'Content & Studio Production', label: 'Content & Studio Production', labelAr: 'صناعة المحتوى والإنتاج' },
-    { value: 'Campaign & Advertising Strategy', label: 'Campaign & Advertising Strategy', labelAr: 'الإعلانات والحملات الإعلانية' },
-    { value: 'Websites & Digital Platforms', label: 'Websites & Digital Platforms', labelAr: 'المواقع والتجارب الرقمية' },
-    { value: 'Full-Service Partnership', label: 'Full-Service Retainer Partnership', labelAr: 'شراكة تسويقية وإعلانية متكاملة' },
-  ];
-
-  const budgetOptions = [
-    { id: '$5k - $10k', label: '$5,000 – $10,000', labelAr: '٥,٠٠٠ – ١٠,٠٠٠ دولار' },
-    { id: '$10k - $25k', label: '$10,000 – $25,000', labelAr: '١٠,٠٠٠ – ٢٥,٠٠٠ دولار' },
-    { id: '$25k - $50k', label: '$25,000 – $50,000', labelAr: '٢٥,٠٠٠ – ٥٠,٠٠٠ دولار' },
-    { id: '$50k+', label: '$50,000+', labelAr: '+٥٠,٠٠٠ دولار' },
-  ];
-
-  const timelineOptions = [
-    { id: 'Immediate', label: 'Immediate (< 2 Weeks)', labelAr: 'فوري (خلال أسبوعين)' },
-    { id: '1-2 Months', label: '1–2 Months', labelAr: 'شهر إلى شهرين' },
-    { id: '3-6 Months', label: '3–6 Months', labelAr: '٣ إلى ٦ أشهر' },
-  ];
-
-  const handleDrag = (e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.type === 'dragenter' || e.type === 'dragover') {
-      setDragActive(true);
-    } else if (e.type === 'dragleave') {
-      setDragActive(false);
-    }
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      const newFiles = Array.from(e.dataTransfer.files);
-      setAttachedFiles((prev) => [...prev, ...newFiles]);
-    }
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const newFiles = Array.from(e.target.files);
-      setAttachedFiles((prev) => [...prev, ...newFiles]);
-    }
-  };
-
-  const removeFile = (index: number) => {
-    setAttachedFiles((prev) => prev.filter((_, i) => i !== index));
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -114,9 +50,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-14">
+        <div className="max-w-3xl mb-14" data-aos="fade-up">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3477BC]/10 border border-[#3477BC]/25 text-sky-400 text-xs font-semibold mb-3 uppercase tracking-wider">
-            <span>{isAr ? 'بدء مشروع جديد واستشارة' : 'Project Inquiry & RFP'}</span>
+            <span>{isAr ? 'تواصل معنا واستشارة مجانية' : 'Contact Us & Free Consultation'}</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white mb-4">
@@ -135,17 +71,21 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
           <p className="text-base text-slate-300 leading-relaxed">
             {isAr
-              ? 'يرجى تزويدنا ببيانات المشروع والاحتياجات التسويقية ليقوم فريقنا الاستشاري بدراسة طلبكم والتواصل معكم خلال 24 ساعة.'
-              : 'Provide your project details and objectives. Our senior strategists will review your inquiry and schedule an initial consultation within 24 hours.'}
+              ? 'يرجى تزويدنا ببيانات الاستفسار لنقوم بدراسة طلبكم والتواصل معكم خلال 24 ساعة.'
+              : 'Provide your contact details. Our team will review your inquiry and schedule an initial consultation within 24 hours.'}
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Left Column: Direct Corporate Contacts & Office Locations */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
+          <div
+            data-aos="fade-up"
+            data-aos-delay="100"
+            className="lg:col-span-5 flex flex-col justify-between space-y-6"
+          >
             <div className="space-y-4">
               {/* Primary Head Office: Riyadh */}
-              <div className="p-5 rounded-2xl bg-[#0B1120] border border-slate-800 shadow-sm">
+              <div className="p-5 rounded-2xl bg-[#0B1120] border border-slate-800 shadow-sm animate-fade-in">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-9 h-9 rounded-lg bg-[#3477BC]/15 border border-[#3477BC]/30 flex items-center justify-center text-sky-400">
                     <MapPin className="w-4 h-4" />
@@ -175,6 +115,22 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       {isAr ? agencyInfo.offices[1].addressAr : agencyInfo.offices[1].address}
                     </div>
                   </div>
+                </div>
+              </div>
+
+              {/* Interactive Google Map Card */}
+              <div className="p-1 rounded-2xl bg-[#0B1120] border border-slate-800 shadow-sm overflow-hidden h-[240px] relative group">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115915.22896503926!2d46.61460395796245!3d24.851941295989255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03890d48939b%3A0x600b5f10b784cf04!2sRiyadh%20Saudi%20Arabia!5e0!3m2!1sen!2ssa!4v1700000000000!5m2!1sen!2ssa"
+                  className="w-full h-full border-0 rounded-xl opacity-60 group-hover:opacity-85 transition-opacity duration-300"
+                  style={{ filter: 'grayscale(1) invert(90%) contrast(1.1) brightness(0.95)' }}
+                  allowFullScreen={false}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Agency Location Map"
+                ></iframe>
+                <div className="absolute bottom-3 right-3 rtl:right-auto rtl:left-3 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-slate-700 text-[10px] text-slate-350 pointer-events-none transition-opacity">
+                  {isAr ? 'موقعنا الجغرافي' : 'Our Office Location'}
                 </div>
               </div>
 
@@ -232,7 +188,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           </div>
 
           {/* Right Column: Structured Corporate Form */}
-          <div className="lg:col-span-7">
+          <div
+            data-aos="fade-up"
+            data-aos-delay="200"
+            className="lg:col-span-7"
+          >
             <div className="bg-[#0B1120] border border-slate-800 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl">
               {isSuccess ? (
                 <div className="text-center py-12 space-y-4">
@@ -240,71 +200,68 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <h3 className="text-2xl font-bold text-white">
-                    {isAr ? 'تم استلام طلبك بنجاح' : 'Inquiry Successfully Received'}
+                    {isAr ? 'تم استلام رسالتك بنجاح' : 'Message Successfully Sent'}
                   </h3>
                   <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
                     {isAr
-                      ? 'شكراً لتواصلك معنا. سيقوم أحد مستشارينا بدراسة المتطلبات والتواصل معك خلال 24 ساعة عمل.'
-                      : 'Thank you for contacting us. A senior partner will review your inquiry and reach out within 24 business hours.'}
+                      ? 'شكراً لتواصلك معنا. سيقوم أحد مستشارينا بالرد عليك خلال 24 ساعة عمل.'
+                      : 'Thank you for reaching out. A strategy team partner will respond within 24 business hours.'}
                   </p>
                   <button
                     type="button"
                     onClick={() => {
                       setIsSuccess(false);
                       setFormData({
-                        fullName: '',
+                        firstName: '',
+                        lastName: '',
                         email: '',
                         phone: '',
-                        company: '',
-                        serviceRequired: 'Brand Strategy & Identity',
-                        budgetRange: '$10k - $25k',
                         message: '',
-                        timeline: '1-2 Months',
                       });
                     }}
-                    className="mt-4 px-6 py-2.5 rounded-xl text-xs font-bold text-white bg-slate-800 hover:bg-slate-700"
+                    className="mt-4 px-6 py-2.5 rounded-xl text-xs font-bold text-white bg-slate-800 hover:bg-slate-700 cursor-pointer"
                   >
-                    {isAr ? 'إرسال استفسار جديد' : 'Submit Another Request'}
+                    {isAr ? 'إرسال رسالة جديدة' : 'Send Another Message'}
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  {/* Name & Company */}
+                  {/* First & Last Name Row */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                        {isAr ? 'الاسم الكامل *' : 'Full Name *'}
+                        {isAr ? 'الاسم الأول *' : 'First Name *'}
                       </label>
                       <input
                         type="text"
                         required
-                        value={formData.fullName}
-                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                        placeholder={isAr ? 'محمد العبدالله' : 'John Doe'}
+                        value={formData.firstName}
+                        onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                        placeholder={isAr ? 'محمد' : 'John'}
                         className="w-full px-4 py-2.5 rounded-xl bg-[#060913] border border-slate-700 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#3477BC]"
                       />
                     </div>
 
                     <div>
                       <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                        {isAr ? 'اسم الشركة / المؤسسة *' : 'Company / Entity *'}
+                        {isAr ? 'اسم العائلة *' : 'Last Name *'}
                       </label>
                       <input
                         type="text"
                         required
-                        value={formData.company}
-                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        placeholder={isAr ? 'شركة الأعمال المتقدمة' : 'Acme Corporation'}
+                        value={formData.lastName}
+                        onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                        placeholder={isAr ? 'العتيبي' : 'Doe'}
                         className="w-full px-4 py-2.5 rounded-xl bg-[#060913] border border-slate-700 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#3477BC]"
                       />
                     </div>
                   </div>
 
-                  {/* Email & Phone */}
+                  {/* Email & Phone Row */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                        {isAr ? 'البريد الإلكتروني للعمل *' : 'Corporate Email *'}
+                        {isAr ? 'البريد الإلكتروني للعمل *' : 'Work Email *'}
                       </label>
                       <input
                         type="email"
@@ -331,153 +288,37 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     </div>
                   </div>
 
-                  {/* Service Required */}
+                  {/* Message Input */}
                   <div>
                     <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                      {isAr ? 'الخدمة الأساسية المطلوبة *' : 'Primary Service Required *'}
-                    </label>
-                    <select
-                      value={formData.serviceRequired}
-                      onChange={(e) => setFormData({ ...formData, serviceRequired: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#060913] border border-slate-700 text-sm text-white focus:outline-none focus:border-[#3477BC]"
-                    >
-                      {serviceOptions.map((opt) => (
-                        <option key={opt.value} value={opt.value}>
-                          {isAr ? opt.labelAr : opt.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  {/* Budget Range Selection */}
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-2">
-                      {isAr ? 'الميزانية التقديرية للمشروع' : 'Estimated Project Budget'}
-                    </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                      {budgetOptions.map((b) => (
-                        <button
-                          key={b.id}
-                          type="button"
-                          onClick={() => setFormData({ ...formData, budgetRange: b.id })}
-                          className={`py-2 px-2 text-xs rounded-xl border text-center transition-all ${
-                            formData.budgetRange === b.id
-                              ? 'bg-[#3477BC] text-white border-[#3477BC] font-bold'
-                              : 'bg-[#060913] text-slate-400 border-slate-700 hover:text-white'
-                          }`}
-                        >
-                          {isAr ? b.labelAr : b.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Expected Timeline */}
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-2">
-                      {isAr ? 'الجدول الزمني المستهدف' : 'Target Timeline'}
-                    </label>
-                    <div className="grid grid-cols-3 gap-2">
-                      {timelineOptions.map((t) => (
-                        <button
-                          key={t.id}
-                          type="button"
-                          onClick={() => setFormData({ ...formData, timeline: t.id })}
-                          className={`py-2 px-2 text-xs rounded-xl border text-center transition-all ${
-                            formData.timeline === t.id
-                              ? 'bg-[#2559CC] text-white border-[#2559CC] font-bold'
-                              : 'bg-[#060913] text-slate-400 border-slate-700 hover:text-white'
-                          }`}
-                        >
-                          {isAr ? t.labelAr : t.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Project Details */}
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                      {isAr ? 'تفاصيل المشروع وأهدافه الرئيسية' : 'Project Scope & Objectives'}
+                      {isAr ? 'تفاصيل الرسالة الاستفسارية *' : 'Message / Inquiry Details *'}
                     </label>
                     <textarea
-                      rows={3}
+                      rows={5}
+                      required
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder={
                         isAr
-                          ? 'أخبرنا عن أهداف الحملة، الجمهور المستهدف، وأي تفاصيل خاصة...'
-                          : 'Describe your objectives, current challenges, target audience, and key deliverables...'
+                          ? 'أخبرنا عن استفسارك أو أهداف مشروعك بالتفصيل هنا...'
+                          : 'Describe your objectives, current challenges, or specific questions...'
                       }
                       className="w-full px-4 py-2.5 rounded-xl bg-[#060913] border border-slate-700 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#3477BC]"
                     />
                   </div>
 
-                  {/* Drag & Drop RFP File Upload */}
-                  <div
-                    onDragEnter={handleDrag}
-                    onDragLeave={handleDrag}
-                    onDragOver={handleDrag}
-                    onDrop={handleDrop}
-                    onClick={() => fileInputRef.current?.click()}
-                    className={`border border-dashed rounded-xl p-3.5 text-center cursor-pointer transition-colors ${
-                      dragActive ? 'border-sky-400 bg-[#3477BC]/10' : 'border-slate-700 bg-[#060913]/60 hover:border-slate-500'
-                    }`}
-                  >
-                    <input
-                      ref={fileInputRef}
-                      type="file"
-                      multiple
-                      onChange={handleFileChange}
-                      className="hidden"
-                    />
-                    <div className="flex items-center justify-center gap-2 text-xs text-slate-400">
-                      <UploadCloud className="w-4 h-4 text-sky-400" />
-                      <span>
-                        {isAr
-                          ? 'إرفاق ملف نطاق العمل / RFP (PDF, DOCX, ZIP)'
-                          : 'Attach RFP / Brief document (PDF, DOCX, ZIP)'}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Attached Files List */}
-                  {attachedFiles.length > 0 && (
-                    <div className="flex flex-wrap gap-2 pt-1">
-                      {attachedFiles.map((file, i) => (
-                        <div
-                          key={i}
-                          className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700 text-xs text-slate-300"
-                        >
-                          <Paperclip className="w-3 h-3 text-sky-400" />
-                          <span className="max-w-[150px] truncate">{file.name}</span>
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              removeFile(i);
-                            }}
-                            className="text-slate-400 hover:text-rose-400"
-                          >
-                            <X className="w-3 h-3" />
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
                   {/* Submit Button */}
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-[#3477BC] via-[#2559CC] to-[#322366] hover:brightness-110 shadow-md transition-all flex items-center justify-center gap-2"
+                    className="w-full py-3.5 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-[#3477BC] via-[#2559CC] to-[#322366] hover:brightness-110 shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
                     {isSubmitting ? (
-                      <span>{isAr ? 'جاري إرسال الطلب...' : 'Submitting Request...'}</span>
+                      <span>{isAr ? 'جاري الإرسال...' : 'Sending...'}</span>
                     ) : (
                       <>
                         <Send className="w-4 h-4" />
-                        <span>{isAr ? 'إرسال طلب المشروع الآن' : 'Submit Project RFP'}</span>
+                        <span>{isAr ? 'إرسال الرسالة الآن' : 'Send Message Now'}</span>
                       </>
                     )}
                   </button>

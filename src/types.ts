@@ -272,12 +272,9 @@ export interface ProjectScopeEstimate {
 }
 
 export interface ContactFormData {
-  fullName: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
-  company: string;
-  serviceRequired: string;
-  budgetRange: string;
   message: string;
-  timeline: string;
 }

@@ -21,7 +21,7 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ lang }) => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-14">
+        <div className="max-w-3xl mb-14" data-aos="fade-up">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3477BC]/10 border border-[#3477BC]/25 text-sky-400 text-xs font-semibold mb-3 uppercase tracking-wider">
             <Users className="w-3.5 h-3.5" />
             <span>{isAr ? 'فريق القيادة والاستراتيجية' : 'Executive Leadership'}</span>
@@ -53,6 +53,8 @@ export const TeamSection: React.FC<TeamSectionProps> = ({ lang }) => {
           {teamMembers.map((member, idx) => (
             <div
               key={idx}
+              data-aos="fade-up"
+              data-aos-delay={idx * 100}
               className="bg-[#0B1120] border border-slate-800 hover:border-slate-700 rounded-2xl overflow-hidden transition-all duration-300 flex flex-col group shadow-sm"
             >
               {/* Photo */}

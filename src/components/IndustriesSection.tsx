@@ -59,7 +59,7 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ lang }) =>
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-12">
+        <div className="max-w-3xl mb-12" data-aos="fade-up">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3477BC]/10 border border-[#3477BC]/25 text-sky-400 text-xs font-semibold mb-3 uppercase tracking-wider">
             <span>{isAr ? 'القطاعات والصناعات' : 'Sectors & Verticals'}</span>
           </div>
@@ -85,14 +85,16 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ lang }) =>
           </p>
         </div>
 
-        {/* 8 Industries Compact Grid */}
+        {/* 4 Industries Compact Grid (At most 4 cards) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {industriesData.map((ind) => {
+          {industriesData.slice(0, 4).map((ind, idx) => {
             const Icon = getIndustryIcon(ind.iconName);
 
             return (
               <div
                 key={ind.id}
+                data-aos="fade-up"
+                data-aos-delay={idx * 100}
                 className="bg-[#0B1120] hover:bg-[#0F172A] border border-slate-800 hover:border-slate-700 rounded-2xl p-5 transition-all duration-200 group flex flex-col justify-between shadow-sm"
               >
                 <div>
@@ -101,9 +103,11 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({ lang }) =>
                       <Icon className="w-5 h-5" />
                     </div>
 
-                    <span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-500/20 font-mono">
-                      {ind.growthStat}
-                    </span>
+                    {ind.growthStat && (
+                      <span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-500/20 font-mono">
+                        {ind.growthStat}
+                      </span>
+                    )}
                   </div>
 
                   <h3 className="text-base font-bold text-white mb-1.5 group-hover:text-sky-300 transition-colors">

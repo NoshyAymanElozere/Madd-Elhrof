@@ -41,6 +41,7 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Short Credibility Badge */}
             <div
               id="hero-badge"
+              data-aos="fade-up"
               className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0F1526] border border-[#3477BC]/30 text-sky-300 text-xs sm:text-sm font-semibold mb-6 shadow-sm"
             >
               <Sparkles className="w-4 h-4 text-sky-400" />
@@ -54,6 +55,8 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Main Headline */}
             <h1
               id="hero-headline"
+              data-aos="fade-up"
+              data-aos-delay="100"
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading tracking-tight leading-[1.12] text-white mb-6"
             >
               {isAr ? (
@@ -76,6 +79,8 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Supporting Text */}
             <p
               id="hero-subtext"
+              data-aos="fade-up"
+              data-aos-delay="200"
               className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed mb-8 font-normal"
             >
               {isAr
@@ -84,7 +89,11 @@ export const Hero: React.FC<HeroProps> = ({
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+            <div
+              data-aos="fade-up"
+              data-aos-delay="300"
+              className="flex flex-wrap items-center gap-4 w-full sm:w-auto"
+            >
               <button
                 type="button"
                 id="hero-cta-primary"
@@ -108,7 +117,11 @@ export const Hero: React.FC<HeroProps> = ({
           </div>
 
           {/* Right Visual Column (Subtle 3D Art Direction & Editorial Agency Teaser) */}
-          <div className="lg:col-span-5 relative flex items-center justify-center">
+          <div
+            data-aos="zoom-in"
+            data-aos-delay="200"
+            className="lg:col-span-5 relative flex items-center justify-center"
+          >
             {/* Visual Canvas Container */}
             <div className="relative w-full max-w-[480px] aspect-square rounded-3xl bg-gradient-to-b from-[#0F1526]/80 to-[#080B14]/90 border border-slate-800 p-2 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.8)] overflow-hidden flex items-center justify-center">
               {/* Subtle Ambient Radial Backlight */}

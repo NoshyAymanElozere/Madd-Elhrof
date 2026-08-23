@@ -42,7 +42,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ lang }) => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-14">
+        <div className="max-w-3xl mb-14" data-aos="fade-up">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3477BC]/10 border border-[#3477BC]/25 text-sky-400 text-xs font-semibold mb-3 uppercase tracking-wider">
             <span>{isAr ? 'القيمة المضافة والشراكة' : 'Our Differentiators'}</span>
           </div>
@@ -68,14 +68,16 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ lang }) => {
           </p>
         </div>
 
-        {/* 5 Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {whyChooseUsPillars.map((pillar) => {
+        {/* 4 Pillars Grid (At most 4 cards) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {whyChooseUsPillars.slice(0, 4).map((pillar, idx) => {
             const Icon = getPillarIcon(pillar.iconName);
 
             return (
               <div
                 key={pillar.id}
+                data-aos="fade-up"
+                data-aos-delay={idx * 150}
                 className="bg-[#0B1120] hover:bg-[#0F172A] border border-slate-800 hover:border-slate-700 rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 group shadow-md"
               >
                 <div>
@@ -104,7 +106,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ lang }) => {
                 {/* Bottom Proof Tag */}
                 <div className="pt-3.5 border-t border-slate-800/80 flex items-center gap-2 text-xs font-medium text-slate-300">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                  <span>{isAr ? pillar.proofPointAr : pillar.proofPoint}</span>
+                  <span>{isAr ? (pillar.proofPointAr || pillar.highlightAr) : (pillar.proofPoint || pillar.highlight)}</span>
                 </div>
               </div>
             );

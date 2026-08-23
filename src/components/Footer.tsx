@@ -69,7 +69,7 @@ export const Footer: React.FC<FooterProps> = ({ lang, onOpenEstimator }) => {
           {/* Column 1: Brand & Bio (4 Cols) */}
           <div className="lg:col-span-4 flex flex-col justify-between space-y-4">
             <div>
-              <BrandLogo size="md" isArabic={isAr} className="mb-4" />
+              <BrandLogo size="sm" isArabic={isAr} className="mb-4" />
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-sm mb-6">
                 {isAr
                   ? 'وكالة متكاملة للدعاية والتسويق الرقمي وبناء الهوية البصرية. نجمع بين التخطيط الاستراتيجي الصارم والإبداع الفني رفيع المستوى لتمكين الشركات من الريادة والنمو.'

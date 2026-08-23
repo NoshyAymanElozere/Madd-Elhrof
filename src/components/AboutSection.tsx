@@ -27,7 +27,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-14">
+        <div className="max-w-3xl mb-14" data-aos="fade-up">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3477BC]/10 border border-[#3477BC]/25 text-sky-400 text-xs font-semibold mb-3 uppercase tracking-wider">
             <span>{isAr ? 'عن الوكالة ورؤيتنا' : 'About Our Agency'}</span>
           </div>
@@ -54,7 +54,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
         {/* 2-Column Corporate Grid: Realistic Photography Studio Showcase + Strategic Pillars */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-16">
           {/* Left Column: Realistic Editorial Team & Studio Photos Grid */}
-          <div className="lg:col-span-6 grid grid-cols-2 gap-4">
+          <div
+            data-aos="fade-up"
+            data-aos-delay="100"
+            className="lg:col-span-6 grid grid-cols-2 gap-4"
+          >
             <div className="space-y-4">
               <div className="relative rounded-2xl overflow-hidden h-52 sm:h-64 bg-slate-900 border border-slate-800 shadow-md">
                 <img
@@ -104,7 +108,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <div className="absolute inset-x-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 <span className="absolute bottom-3 left-3 rtl:left-auto rtl:right-3 text-[11px] font-bold text-white bg-black/60 px-2.5 py-1 rounded-md">
                   {isAr ? 'مختبر تحليل البيانات والأداء' : 'Data & Growth Lab'}
                 </span>
@@ -113,17 +117,20 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
           </div>
 
           {/* Right Column: Mission, Vision, and Operational Philosophy */}
-          <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
+          <div
+            data-aos="fade-up"
+            data-aos-delay="200"
+            className="lg:col-span-6 flex flex-col justify-between space-y-6"
+          >
             {/* Interactive Tab Switcher */}
             <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-[#0B1120] border border-slate-800 max-w-md">
               <button
                 type="button"
                 onClick={() => setActiveTab('overview')}
-                className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-1.5 ${
-                  activeTab === 'overview'
+                className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-1.5 ${activeTab === 'overview'
                     ? 'bg-gradient-to-r from-[#3477BC] to-[#2559CC] text-white shadow-sm'
                     : 'text-slate-400 hover:text-slate-200'
-                }`}
+                  }`}
               >
                 <Compass className="w-4 h-4" />
                 <span>{isAr ? 'فلسفتنا' : 'Philosophy'}</span>
@@ -132,11 +139,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
               <button
                 type="button"
                 onClick={() => setActiveTab('mission')}
-                className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-1.5 ${
-                  activeTab === 'mission'
+                className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-1.5 ${activeTab === 'mission'
                     ? 'bg-gradient-to-r from-[#3477BC] to-[#2559CC] text-white shadow-sm'
                     : 'text-slate-400 hover:text-slate-200'
-                }`}
+                  }`}
               >
                 <Target className="w-4 h-4" />
                 <span>{isAr ? 'رسالتنا' : 'Mission'}</span>
@@ -145,11 +151,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
               <button
                 type="button"
                 onClick={() => setActiveTab('vision')}
-                className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-1.5 ${
-                  activeTab === 'vision'
+                className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-1.5 ${activeTab === 'vision'
                     ? 'bg-gradient-to-r from-[#3477BC] to-[#2559CC] text-white shadow-sm'
                     : 'text-slate-400 hover:text-slate-200'
-                }`}
+                  }`}
               >
                 <Eye className="w-4 h-4" />
                 <span>{isAr ? 'رؤيتنا' : 'Vision'}</span>

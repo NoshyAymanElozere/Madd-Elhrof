@@ -16,12 +16,22 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ProjectEstimatorModal } from './components/ProjectEstimatorModal';
 import { Language } from './types';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function App() {
   const [lang, setLang] = useState<Language>('ar'); // Default to Arabic with instant EN switch
   const [isEstimatorOpen, setIsEstimatorOpen] = useState(false);
   const [estimatorInitialService, setEstimatorInitialService] = useState<string | undefined>(undefined);
   const [prefilledScope, setPrefilledScope] = useState<string>('');
+
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      easing: 'ease-out-quad',
+    });
+  }, []);
 
   // Handle document direction and font pairing for Arabic vs English
   useEffect(() => {

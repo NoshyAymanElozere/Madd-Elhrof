@@ -54,7 +54,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mb-16" data-aos="fade-up">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3477BC]/10 border border-[#3477BC]/25 text-sky-400 text-xs font-semibold mb-3 uppercase tracking-wider">
             <span>{isAr ? 'مجالات خبرتنا الأساسية' : 'Core Capabilities'}</span>
           </div>
@@ -80,14 +80,16 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           </p>
         </div>
 
-        {/* 6 Core Services Grid (2 cols on tablet, 3 cols on desktop) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {coreServices.map((service) => {
+        {/* Core Services Grid (4 cards maximum in one row on desktop) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {coreServices.slice(0, 4).map((service, idx) => {
             const Icon = getIcon(service.iconName);
 
             return (
               <div
                 key={service.id}
+                data-aos="fade-up"
+                data-aos-delay={idx * 150}
                 className="bg-[#0B1120] hover:bg-[#0F172A] border border-slate-800 hover:border-slate-700 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 group shadow-md"
               >
                 {/* Visual Photography Header */}
@@ -113,13 +115,13 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                 </div>
 
                 {/* Card Content Body */}
-                <div className="p-6 flex-1 flex flex-col justify-between">
+                <div className="p-5 flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-sky-300 transition-colors">
+                    <h3 className="text-base font-bold text-white mb-2 group-hover:text-sky-300 transition-colors line-clamp-2">
                       {isAr ? service.titleAr : service.title}
                     </h3>
 
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5">
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5 line-clamp-3">
                       {isAr ? service.shortDescAr : service.shortDesc}
                     </p>
 
@@ -127,8 +129,8 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                     <div className="space-y-2 mb-6">
                       {((isAr ? service.keyDeliverablesAr : service.keyDeliverables) || [])
                         .slice(0, 3)
-                        .map((deliv, idx) => (
-                          <div key={idx} className="flex items-start gap-2 text-xs text-slate-400">
+                        .map((deliv, i) => (
+                          <div key={i} className="flex items-start gap-2 text-xs text-slate-400">
                             <CheckCircle2 className="w-3.5 h-3.5 text-sky-400 flex-shrink-0 mt-0.5" />
                             <span className="line-clamp-1">{deliv}</span>
                           </div>
@@ -141,7 +143,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                     <button
                       type="button"
                       onClick={() => setSelectedService(service)}
-                      className="text-xs font-semibold text-sky-400 hover:text-white flex items-center gap-1.5 transition-colors"
+                      className="text-xs font-semibold text-sky-400 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
                     >
                       <span>{isAr ? 'اكتشف الخدمة' : 'Explore Service'}</span>
                       {isAr ? <ArrowLeft className="w-3.5 h-3.5" /> : <ArrowRight className="w-3.5 h-3.5" />}
@@ -150,7 +152,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                     <button
                       type="button"
                       onClick={() => onSelectServiceForEstimate(isAr ? service.titleAr : service.title)}
-                      className="text-[11px] font-medium text-slate-400 hover:text-sky-300 bg-slate-800/60 px-2.5 py-1 rounded-lg border border-slate-700/60"
+                      className="text-[11px] font-medium text-slate-400 hover:text-sky-300 bg-slate-800/60 px-2.5 py-1 rounded-lg border border-slate-700/60 cursor-pointer"
                     >
                       {isAr ? 'طلب تسعير' : 'Get Quote'}
                     </button>

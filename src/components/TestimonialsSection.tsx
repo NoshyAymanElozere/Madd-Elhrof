@@ -42,7 +42,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ lang }
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-14">
+        <div className="max-w-3xl mb-14" data-aos="fade-up">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3477BC]/10 border border-[#3477BC]/25 text-sky-400 text-xs font-semibold mb-3 uppercase tracking-wider">
             <span>{isAr ? 'آراء شركاء النجاح' : 'Executive Endorsements'}</span>
           </div>
@@ -69,7 +69,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ lang }
         </div>
 
         {/* Testimonial Feature Card */}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="100">
           <div className="bg-[#0B1120] border border-slate-800 rounded-3xl p-7 sm:p-10 relative shadow-xl">
             <Quote className="w-14 h-14 text-slate-800 absolute top-6 right-6 rtl:right-auto rtl:left-6 pointer-events-none" />
 
@@ -136,11 +136,10 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ lang }
                   key={idx}
                   type="button"
                   onClick={() => setCurrentIndex(idx)}
-                  className={`h-2 rounded-full transition-all ${
-                    currentIndex === idx
+                  className={`h-2 rounded-full transition-all ${currentIndex === idx
                       ? 'w-8 bg-[#3477BC]'
                       : 'w-2 bg-slate-700 hover:bg-slate-500'
-                  }`}
+                    }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />
               ))}

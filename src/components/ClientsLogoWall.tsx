@@ -15,7 +15,7 @@ export const ClientsLogoWall: React.FC<ClientsLogoWallProps> = ({ lang }) => {
       id="clients"
       className="py-14 bg-[#080B14] relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center" data-aos="fade-up">
         <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">
           <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
           <span>{isAr ? 'نثق بهم ويثقون بنا' : 'TRUSTED BY LEADING ENTERPRISES & BRANDS'}</span>
@@ -28,9 +28,11 @@ export const ClientsLogoWall: React.FC<ClientsLogoWallProps> = ({ lang }) => {
       {/* Clean Grayscale Corporate Partner Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4 items-center">
-          {trustedClients.map((client) => (
+          {trustedClients.map((client, idx) => (
             <div
               key={client.id}
+              data-aos="fade-up"
+              data-aos-delay={idx * 50}
               className="group p-4 rounded-xl bg-[#0B1120] border border-slate-800/80 hover:border-slate-700 hover:bg-[#0F172A] transition-all duration-200 flex flex-col items-center justify-center text-center shadow-sm"
             >
               {/* Clean Geometric Monogram */}

@@ -31,13 +31,20 @@ export const CTASection: React.FC<CTASectionProps> = ({
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0B1120] border border-[#3477BC]/30 text-sky-400 text-xs font-semibold mb-6 shadow-sm">
+        <div
+          data-aos="fade-up"
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0B1120] border border-[#3477BC]/30 text-sky-400 text-xs font-semibold mb-6 shadow-sm"
+        >
           <Sparkles className="w-4 h-4 text-sky-400" />
           <span>{isAr ? 'جاهز لبناء حضور حقيقي لعلامتك؟' : 'Ready to Elevate Your Market Presence?'}</span>
         </div>
 
         {/* Headline */}
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white mb-6 leading-tight">
+        <h2
+          data-aos="fade-up"
+          data-aos-delay="100"
+          className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white mb-6 leading-tight"
+        >
           {isAr ? (
             <>
               لديك فكرة؟{' '}
@@ -52,14 +59,22 @@ export const CTASection: React.FC<CTASectionProps> = ({
         </h2>
 
         {/* Supporting Text */}
-        <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed mb-10">
+        <p
+          data-aos="fade-up"
+          data-aos-delay="200"
+          className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed mb-10"
+        >
           {isAr
             ? 'شاركنا أهدافك وسنساعدك في بناء الحل المناسب لعلامتك التجارية وفق خطة استراتيجية وتنفيذ احترافي.'
             : 'Share your business goals with our strategists, and let us engineer the optimal roadmap to scale your audience and commercial revenue.'}
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div
+          data-aos="fade-up"
+          data-aos-delay="300"
+          className="flex flex-wrap items-center justify-center gap-4"
+        >
           <button
             type="button"
             onClick={onStartProject}
