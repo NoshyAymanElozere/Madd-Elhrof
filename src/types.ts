@@ -96,6 +96,7 @@ export interface CaseStudyData {
 
 export interface PortfolioProject {
   id: string;
+  serviceId?: string;
   title: string;
   titleAr: string;
   client: string;
@@ -224,9 +225,11 @@ export interface TestimonialItem {
 export interface ClientLogo {
   id: string;
   name: string;
+  nameAr: string;
   industry: string;
   industryAr: string;
   category: string;
+  image: string;
 }
 
 export interface BlogPost {

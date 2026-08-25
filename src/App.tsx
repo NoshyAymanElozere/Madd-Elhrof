@@ -14,16 +14,15 @@ import { IndustriesSection } from './components/IndustriesSection';
 import { CTASection } from './components/CTASection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import { ProjectEstimatorModal } from './components/ProjectEstimatorModal';
-import { Language } from './types';
+import { DepartmentDetailView } from './components/DepartmentDetailView';
+import { Language, ServiceItem } from './types';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 export default function App() {
   const [lang, setLang] = useState<Language>('ar'); // Default to Arabic with instant EN switch
-  const [isEstimatorOpen, setIsEstimatorOpen] = useState(false);
-  const [estimatorInitialService, setEstimatorInitialService] = useState<string | undefined>(undefined);
   const [prefilledScope, setPrefilledScope] = useState<string>('');
+  const [selectedDepartment, setSelectedDepartment] = useState<ServiceItem | null>(null);
 
   useEffect(() => {
     AOS.init({
@@ -58,14 +57,18 @@ export default function App() {
   };
 
   const handleOpenEstimator = (initialService?: string) => {
-    setEstimatorInitialService(initialService);
-    setIsEstimatorOpen(true);
-  };
-
-  const handleConfirmEstimate = (scopeSummary: string) => {
-    setIsEstimatorOpen(false);
-    setPrefilledScope(scopeSummary);
-    scrollToSection('contact');
+    if (initialService) {
+      setPrefilledScope(lang === 'ar'
+        ? `أرغب في الحصول على تسعير وطلب تفاصيل حول: "${initialService}"`
+        : `I am interested in obtaining a quote and information about: "${initialService}"`
+      );
+    } else {
+      setPrefilledScope('');
+    }
+    setSelectedDepartment(null);
+    setTimeout(() => {
+      scrollToSection('contact');
+    }, 100);
   };
 
   return (
@@ -75,91 +78,106 @@ export default function App() {
         lang={lang}
         onLanguageChange={setLang}
         onOpenEstimator={() => handleOpenEstimator()}
-        onStartProject={() => scrollToSection('contact')}
+        onStartProject={() => {
+          setSelectedDepartment(null);
+          setTimeout(() => scrollToSection('contact'), 50);
+        }}
+        onNavClick={(id) => {
+          setSelectedDepartment(null);
+          setTimeout(() => scrollToSection(id), 50);
+        }}
       />
 
-      {/* Main 15-Section Corporate Flow */}
-      <main>
-        {/* 2. Hero Section */}
-        <Hero
+      {selectedDepartment ? (
+        <DepartmentDetailView
+          service={selectedDepartment}
           lang={lang}
-          onOpenEstimator={() => handleOpenEstimator()}
-          onExploreWork={() => scrollToSection('portfolio')}
-          onStartProject={() => scrollToSection('contact')}
-        />
-
-        {/* 3. Credibility Metrics Strip */}
-        <CredibilityMetrics lang={lang} />
-
-        {/* 4. Clients / Trusted Partners Logo Wall */}
-        <ClientsLogoWall lang={lang} />
-
-        {/* 5. Core Services Section (6 core services) */}
-        <ServicesSection
-          lang={lang}
-          onSelectServiceForEstimate={(sTitle) => handleOpenEstimator(sTitle)}
-        />
-
-        {/* 6. Featured Work / Portfolio */}
-        <PortfolioSection
-          lang={lang}
-          onRequestProject={(projectTitle) => {
-            setPrefilledScope(`Interested in a project similar to: "${projectTitle}"`);
-            scrollToSection('contact');
+          onClose={() => {
+            setSelectedDepartment(null);
+            setTimeout(() => {
+              scrollToSection('services');
+            }, 80);
+          }}
+          onStartEstimate={(serviceTitle) => {
+            handleOpenEstimator(serviceTitle);
           }}
         />
+      ) : (
+        /* Main 15-Section Corporate Flow */
+        <main>
+          {/* 2. Hero Section */}
+          <Hero
+            lang={lang}
+            onOpenEstimator={() => handleOpenEstimator()}
+            onExploreWork={() => scrollToSection('portfolio')}
+            onStartProject={() => scrollToSection('contact')}
+          />
 
-        {/* 7. Documented Case Studies (Client, Challenge, Solution, Result) */}
-        <FeaturedCaseStudies
-          lang={lang}
-          onSelectProjectForEstimate={(pName) => {
-            setPrefilledScope(`Inquiry inspired by Case Study: "${pName}"`);
-            scrollToSection('contact');
-          }}
-        />
+          {/* 3. Credibility Metrics Strip */}
+          <CredibilityMetrics lang={lang} />
 
-        {/* 8. About Section (Mission, Vision, Philosophy & Team Photos) */}
-        <AboutSection lang={lang} />
+          {/* 4. Clients / Trusted Partners Logo Wall */}
+          <ClientsLogoWall lang={lang} />
 
-        {/* 9. Why Choose Us (5 Sharp Direct Pillars) */}
-        <WhyChooseUs lang={lang} />
+          {/* 5. Core Services Section (7 core services) */}
+          <ServicesSection
+            lang={lang}
+            onSelectService={setSelectedDepartment}
+            onSelectServiceForEstimate={(sTitle) => handleOpenEstimator(sTitle)}
+          />
 
-        {/* 10. Process / Workflow (5 Clear Steps) */}
-        <ProcessTimeline lang={lang} />
+          {/* 6. Featured Work / Portfolio */}
+          <PortfolioSection
+            lang={lang}
+            onRequestProject={(projectTitle) => {
+              setPrefilledScope(`Interested in a project similar to: "${projectTitle}"`);
+              scrollToSection('contact');
+            }}
+          />
 
-        {/* 11. Testimonials / Client Feedback */}
-        <TestimonialsSection lang={lang} />
+          {/* 7. Documented Case Studies (Client, Challenge, Solution, Result) */}
+          <FeaturedCaseStudies
+            lang={lang}
+            onSelectProjectForEstimate={(pName) => {
+              setPrefilledScope(`Inquiry inspired by Case Study: "${pName}"`);
+              scrollToSection('contact');
+            }}
+          />
 
-        {/* 12. Industries We Serve (8 Compact Sectors) */}
-        <IndustriesSection lang={lang} />
+          {/* 8. About Section (Mission, Vision, Philosophy & Team Photos) */}
+          <AboutSection lang={lang} />
 
-        {/* 13. Call to Action (CTA) */}
-        <CTASection
-          lang={lang}
-          onStartProject={() => scrollToSection('contact')}
-          onOpenEstimator={() => handleOpenEstimator()}
-        />
+          {/* 9. Why Choose Us (5 Sharp Direct Pillars) */}
+          <WhyChooseUs lang={lang} />
 
-        {/* 14. Contact Us / RFP Proposal Section */}
-        <ContactSection
-          lang={lang}
-          prefilledScope={prefilledScope}
-        />
-      </main>
+          {/* 10. Process / Workflow (5 Clear Steps) */}
+          <ProcessTimeline lang={lang} />
+
+          {/* 11. Testimonials / Client Feedback */}
+          <TestimonialsSection lang={lang} />
+
+          {/* 12. Industries We Serve (8 Compact Sectors) */}
+          <IndustriesSection lang={lang} />
+
+          {/* 13. Call to Action (CTA) */}
+          <CTASection
+            lang={lang}
+            onStartProject={() => scrollToSection('contact')}
+            onOpenEstimator={() => handleOpenEstimator()}
+          />
+
+          {/* 14. Contact Us / RFP Proposal Section */}
+          <ContactSection
+            lang={lang}
+            prefilledScope={prefilledScope}
+          />
+        </main>
+      )}
 
       {/* 15. Complete Corporate Footer */}
       <Footer
         lang={lang}
         onOpenEstimator={() => handleOpenEstimator()}
-      />
-
-      {/* Interactive Scope & Cost Estimator Modal */}
-      <ProjectEstimatorModal
-        isOpen={isEstimatorOpen}
-        initialService={estimatorInitialService}
-        lang={lang}
-        onClose={() => setIsEstimatorOpen(false)}
-        onConfirmEstimate={handleConfirmEstimate}
       />
     </div>
   );

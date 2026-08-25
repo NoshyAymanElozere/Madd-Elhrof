@@ -51,6 +51,10 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  padding-top: 0.05em;
+  padding-bottom: 0.05em;
+  margin-top: -0.05em;
+  margin-bottom: -0.05em;
 }
 
 .brand-gradient-primary {
@@ -117,4 +121,36 @@
     filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.5)) brightness(1.05);
     transform: scale(1.02);
   }
+}
+
+/* Seamless Infinite Marquee Loop Animations */
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-33.3333%);
+  }
+}
+
+@keyframes marqueeScrollRtl {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(33.3333%);
+  }
+}
+
+.animate-marquee-scroll {
+  display: flex;
+  width: max-content;
+  gap: 1.5rem;
+  animation: marqueeScroll 35s linear infinite;
+}
+
+[dir="rtl"] .animate-marquee-scroll {
+  animation: marqueeScrollRtl 35s linear infinite;
 }

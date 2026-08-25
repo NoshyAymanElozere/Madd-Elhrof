@@ -75,11 +75,11 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ lang }
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 mb-6">
               {/* Executive Portrait */}
-              <div className="w-18 h-18 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border border-slate-700 flex-shrink-0 shadow-md">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-2 border-[#1E293B] hover:border-[#3477BC] flex-shrink-0 shadow-lg bg-slate-900 transition-colors duration-300">
                 <img
                   src={current.avatar}
                   alt={current.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-full"
                   loading="lazy"
                 />
               </div>
@@ -137,8 +137,8 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ lang }
                   type="button"
                   onClick={() => setCurrentIndex(idx)}
                   className={`h-2 rounded-full transition-all ${currentIndex === idx
-                      ? 'w-8 bg-[#3477BC]'
-                      : 'w-2 bg-slate-700 hover:bg-slate-500'
+                    ? 'w-8 bg-[#3477BC]'
+                    : 'w-2 bg-slate-700 hover:bg-slate-500'
                     }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />

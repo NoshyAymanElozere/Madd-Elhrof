@@ -62,7 +62,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
             <div className="space-y-4">
               <div className="relative rounded-2xl overflow-hidden h-52 sm:h-64 bg-slate-900 border border-slate-800 shadow-md">
                 <img
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop"
+                  src="/assets/team3.jpg"
                   alt="Agency Strategy Team"
                   className="w-full h-full object-cover"
                   loading="lazy"
@@ -75,7 +75,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
 
               <div className="relative rounded-2xl overflow-hidden h-40 sm:h-48 bg-slate-900 border border-slate-800 shadow-md">
                 <img
-                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop"
+                  src="/assets/watermarked_img_17097879265899348156.jpg"
                   alt="Boardroom Client Presentation"
                   className="w-full h-full object-cover"
                   loading="lazy"
@@ -90,7 +90,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
             <div className="space-y-4 pt-6">
               <div className="relative rounded-2xl overflow-hidden h-40 sm:h-48 bg-slate-900 border border-slate-800 shadow-md">
                 <img
-                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1000&auto=format&fit=crop"
+                  src="/assets/watermarked_img_436015550541693840.jpg"
                   alt="Creative Design & Production Studio"
                   className="w-full h-full object-cover"
                   loading="lazy"
@@ -103,12 +103,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
 
               <div className="relative rounded-2xl overflow-hidden h-52 sm:h-64 bg-slate-900 border border-slate-800 shadow-md">
                 <img
-                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1000&auto=format&fit=crop"
+                  src="/assets/watermarked_img_11964298785670367284.jpg"
                   alt="Analytics & Performance Lab"
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-x-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 <span className="absolute bottom-3 left-3 rtl:left-auto rtl:right-3 text-[11px] font-bold text-white bg-black/60 px-2.5 py-1 rounded-md">
                   {isAr ? 'مختبر تحليل البيانات والأداء' : 'Data & Growth Lab'}
                 </span>
@@ -128,20 +128,20 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
                 type="button"
                 onClick={() => setActiveTab('overview')}
                 className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-1.5 ${activeTab === 'overview'
-                    ? 'bg-gradient-to-r from-[#3477BC] to-[#2559CC] text-white shadow-sm'
-                    : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-gradient-to-r from-[#3477BC] to-[#2559CC] text-white shadow-sm'
+                  : 'text-slate-400 hover:text-slate-200'
                   }`}
               >
                 <Compass className="w-4 h-4" />
-                <span>{isAr ? 'فلسفتنا' : 'Philosophy'}</span>
+                <span>{isAr ? 'من نحن' : 'Who We Are'}</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setActiveTab('mission')}
                 className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-1.5 ${activeTab === 'mission'
-                    ? 'bg-gradient-to-r from-[#3477BC] to-[#2559CC] text-white shadow-sm'
-                    : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-gradient-to-r from-[#3477BC] to-[#2559CC] text-white shadow-sm'
+                  : 'text-slate-400 hover:text-slate-200'
                   }`}
               >
                 <Target className="w-4 h-4" />
@@ -152,8 +152,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
                 type="button"
                 onClick={() => setActiveTab('vision')}
                 className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-1.5 ${activeTab === 'vision'
-                    ? 'bg-gradient-to-r from-[#3477BC] to-[#2559CC] text-white shadow-sm'
-                    : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-gradient-to-r from-[#3477BC] to-[#2559CC] text-white shadow-sm'
+                  : 'text-slate-400 hover:text-slate-200'
                   }`}
               >
                 <Eye className="w-4 h-4" />
@@ -166,17 +166,17 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ lang }) => {
               {activeTab === 'overview' && (
                 <div className="space-y-4">
                   <h3 className="text-xl font-bold text-white">
-                    {isAr ? 'كيف نعمل وما الذي يميزنا' : 'How We Operate & Deliver'}
+                    {isAr ? 'نبذة عن وكالة مداد الحروف' : 'About MIDAD Agency'}
                   </h3>
                   <p className="text-sm text-slate-300 leading-relaxed">
                     {isAr
-                      ? 'نؤمن بأن الإعلان الناجح ليس مجرد تصميم جذاب، بل هو منظومة تجارية متكاملة تبدأ بفهم عميق لسلوك المستهلك وتحليل المنافسين، وتمر بصناعة رسائل إعلانية مؤثرة، وتنتهي بقياس دقيق لكل ريال يتم إنفاقه.'
-                      : 'We believe advertising success is not just aesthetic design, but an integrated commercial engine that starts with deep consumer psychology, crafts high-converting narratives, and delivers rigorous ROAS measurement.'}
+                      ? 'تأسست وكالتنا لتكون الشريك الاستراتيجي الموثوق في تقديم الحلول المتكاملة للدعاية والإعلان، وبناء الهويات البصرية المتميزة، وصناعة الصناديق وحلول التغليف المخصصة. نلتزم بأعلى معايير الإتقان والجودة لتلبية احتياجات السوق السعودي والإقليمي.'
+                      : 'Our agency was established to be the trusted strategic partner in delivering integrated solutions for advertising, premium brand identity architecture, custom box manufacturing, and packaging solutions. We commit to the highest benchmarks of quality and precision to serve Saudi and regional markets.'}
                   </p>
                   <div className="pt-2 flex flex-col gap-2.5">
                     <div className="flex items-center gap-2.5 text-xs text-slate-300">
                       <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                      <span>{isAr ? 'فريق عمل متكامل داخل مقر الوكالة' : 'In-house multidisciplinary creative & tech team'}</span>
+                      <span>{isAr ? 'حلول تغليف ومطبوعات متكاملة داخل مقر الوكالة' : 'In-house branding, printing, and custom box production'}</span>
                     </div>
                     <div className="flex items-center gap-2.5 text-xs text-slate-300">
                       <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />

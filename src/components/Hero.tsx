@@ -47,22 +47,21 @@ export const Hero: React.FC<HeroProps> = ({
               <Sparkles className="w-4 h-4 text-sky-400" />
               <span>
                 {isAr
-                  ? 'وكالة متكاملة للدعاية والتسويق الرقمي'
-                  : 'Integrated Advertising & Digital Marketing Agency'}
+                  ? 'وكالة متكاملة للدعاية والإعلان'
+                  : 'Integrated Advertising & Packaging Agency'}
               </span>
             </div>
 
-            {/* Main Headline */}
             <h1
               id="hero-headline"
               data-aos="fade-up"
               data-aos-delay="100"
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading tracking-tight leading-[1.12] text-white mb-6"
+              className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-white mb-6 ${isAr ? 'leading-[1.4] tracking-normal' : 'tracking-tight leading-[1.12]'}`}
             >
               {isAr ? (
                 <>
                   نحوّل الأفكار إلى{' '}
-                  <span className="brand-gradient-text block sm:inline">
+                  <span className="brand-gradient-text inline-block py-1 px-1">
                     نتائج تصنع الفرق
                   </span>
                 </>
@@ -84,8 +83,8 @@ export const Hero: React.FC<HeroProps> = ({
               className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed mb-8 font-normal"
             >
               {isAr
-                ? 'نقدّم حلولاً متكاملة في الإعلان والتسويق الرقمي وبناء الهوية البصرية وصناعة المحتوى، لمساعدة العلامات التجارية على النمو والوصول إلى جمهورها بفعالية وبأعلى معايير الإتقان.'
-                : 'We deliver integrated solutions across advertising, performance digital marketing, brand identity, and commercial content production, helping ambitious brands scale their market share with precision.'}
+                ? 'نختص في وكالة مداد الحروف بتصميم الهوية البصرية، حلول المطبوعات والتعبئة والتغليف، بالإضافة للمواقع والمتاجر واللوحات المنيرة التجارية بأعلى معايير الجودة لتجسيد مكانة علامتك بالسوق.'
+                : 'At MIDAD Agency, we specialize in high-end brand identity architecture, custom packaging, premium offset printing, corporate web portals, and illuminated storefront signage.'}
             </p>
 
             {/* CTAs */}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { trustedClients } from '../data/agencyData';
 import { Language } from '../types';
-import { Building2, ShieldCheck } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 
 interface ClientsLogoWallProps {
   lang: Language;
@@ -13,40 +13,55 @@ export const ClientsLogoWall: React.FC<ClientsLogoWallProps> = ({ lang }) => {
   return (
     <section
       id="clients"
-      className="py-14 bg-[#080B14] relative overflow-hidden"
+      className="py-20 bg-[#080B14] relative overflow-hidden border-t border-slate-900"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center" data-aos="fade-up">
-        <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">
+      {/* Background ambient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#3477BC]/5 rounded-full blur-[100px] pointer-events-none -z-10" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center" data-aos="fade-up">
+        <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#3477BC] bg-[#3477BC]/10 px-3 py-1 rounded-full border border-[#3477BC]/20 mb-3">
           <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
           <span>{isAr ? 'نثق بهم ويثقون بنا' : 'TRUSTED BY LEADING ENTERPRISES & BRANDS'}</span>
         </div>
-        <h3 className="text-xl sm:text-2xl font-bold text-white">
+        <h3 className="text-2xl sm:text-3xl font-black font-heading text-white">
           {isAr ? 'عملاؤنا وشركاء النجاح' : 'Our Clients & Strategic Partners'}
         </h3>
       </div>
 
-      {/* Clean Grayscale Corporate Partner Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4 items-center">
-          {trustedClients.map((client, idx) => (
+      {/* Modern Infinite Scrolling Marquee */}
+      <div className="relative w-full overflow-hidden select-none py-2">
+        {/* Sleek edge fading masks for seamless modern look */}
+        <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-[#080B14] to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-[#080B14] to-transparent z-10 pointer-events-none" />
+
+        {/* Animated Marquee Flex Container */}
+        <div className="animate-marquee-scroll hover:[animation-play-state:paused]">
+          {/* Loop three times to guarantee continuous endless loop layout */}
+          {[...trustedClients, ...trustedClients, ...trustedClients].map((client, idx) => (
             <div
-              key={client.id}
-              data-aos="fade-up"
-              data-aos-delay={idx * 50}
-              className="group p-4 rounded-xl bg-[#0B1120] border border-slate-800/80 hover:border-slate-700 hover:bg-[#0F172A] transition-all duration-200 flex flex-col items-center justify-center text-center shadow-sm"
+              key={`${client.id}-${idx}`}
+              className="flex-shrink-0 w-[160px] sm:w-[190px] group relative p-5 rounded-2xl bg-[#0B1120] hover:bg-[#0F172A] border border-slate-800/80 hover:border-[#3477BC]/40 transition-all duration-300 flex flex-col items-center justify-center text-center shadow-md hover:shadow-[#3477BC]/5"
             >
-              {/* Clean Geometric Monogram */}
-              <div className="w-9 h-9 rounded-lg bg-slate-800/60 border border-slate-700/60 flex items-center justify-center text-slate-400 group-hover:text-white group-hover:bg-[#3477BC] transition-all duration-200 mb-2">
-                <span className="font-bold text-xs font-mono">
-                  {client.name.substring(0, 2)}
-                </span>
+              {/* Top gradient highlight strip on hover */}
+              <div className="absolute inset-x-6 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#3477BC]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+              {/* Logo container circle */}
+              <div className="w-20 h-20 rounded-full overflow-hidden mb-4 bg-slate-900 border border-slate-800 flex items-center justify-center p-0.5 group-hover:border-[#3477BC] transition-colors relative shadow-inner">
+                <img
+                  src={client.image}
+                  alt={client.name}
+                  className="w-full h-full object-cover rounded-full transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = idx % 2 === 0 ? '/assets/discssion.jpg' : '/assets/group.jpg';
+                  }}
+                />
               </div>
 
-              <div className="text-[11px] font-bold text-slate-300 group-hover:text-white transition-colors tracking-tight line-clamp-1">
-                {client.name}
-              </div>
-              <div className="text-[9px] text-slate-400 group-hover:text-sky-300 transition-colors mt-0.5">
-                {isAr ? client.industryAr : client.industry}
+              {/* Brand label */}
+              <div className="text-xs font-bold text-slate-300 group-hover:text-white transition-colors tracking-wide leading-tight line-clamp-2">
+                {isAr ? client.nameAr : client.name}
               </div>
             </div>
           ))}

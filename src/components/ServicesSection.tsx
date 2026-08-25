@@ -14,19 +14,25 @@ import {
   X,
   Send,
   Zap,
+  FileText,
+  Package,
+  Layers,
+  ShoppingBag,
+  Award,
 } from 'lucide-react';
 
 interface ServicesSectionProps {
   lang: Language;
+  onSelectService: (service: ServiceItem) => void;
   onSelectServiceForEstimate: (serviceTitle: string) => void;
 }
 
 export const ServicesSection: React.FC<ServicesSectionProps> = ({
   lang,
+  onSelectService,
   onSelectServiceForEstimate,
 }) => {
   const isAr = lang === 'ar';
-  const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
 
   const getIcon = (iconName: string) => {
     switch (iconName) {
@@ -42,6 +48,18 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
         return Megaphone;
       case 'Globe':
         return Globe;
+      case 'FileText':
+        return FileText;
+      case 'Package':
+        return Package;
+      case 'Layers':
+        return Layers;
+      case 'ShoppingBag':
+        return ShoppingBag;
+      case 'Award':
+        return Award;
+      case 'Zap':
+        return Zap;
       default:
         return Sparkles;
     }
@@ -73,16 +91,16 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             )}
           </h2>
 
-          <p className="text-base text-slate-300 leading-relaxed">
+          <p className="text-base text-slate-300 leading-relaxed font-normal">
             {isAr
               ? 'نركز على الخدمات الأساسية التي تبني العلامة التجارية وتضاعف مبيعاتها عبر منظومة متناغمة من الاستراتيجية، الإبداع، والأداء الرقمي.'
               : 'Focused on the foundational disciplines required to establish market authority, scale customer acquisition, and maximize long-term enterprise value.'}
           </p>
         </div>
 
-        {/* Core Services Grid (4 cards maximum in one row on desktop) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {coreServices.slice(0, 4).map((service, idx) => {
+        {/* Core Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+          {coreServices.map((service, idx) => {
             const Icon = getIcon(service.iconName);
 
             return (
@@ -90,7 +108,8 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                 key={service.id}
                 data-aos="fade-up"
                 data-aos-delay={idx * 150}
-                className="bg-[#0B1120] hover:bg-[#0F172A] border border-slate-800 hover:border-slate-700 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 group shadow-md"
+                onClick={() => onSelectService(service)}
+                className="bg-[#0B1120] hover:bg-[#0F172A] border border-slate-800 hover:border-slate-700 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 group shadow-md cursor-pointer hover:shadow-2xl hover:shadow-sky-500/5 hover:-translate-y-0.5"
               >
                 {/* Visual Photography Header */}
                 <div className="relative h-44 overflow-hidden bg-slate-900">
@@ -117,11 +136,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                 {/* Card Content Body */}
                 <div className="p-5 flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-base font-bold text-white mb-2 group-hover:text-sky-300 transition-colors line-clamp-2">
+                    <h3 className="text-base font-bold text-white mb-2 group-hover:text-sky-305 transition-colors line-clamp-2">
                       {isAr ? service.titleAr : service.title}
                     </h3>
 
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5 line-clamp-3">
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5 line-clamp-3 font-normal">
                       {isAr ? service.shortDescAr : service.shortDesc}
                     </p>
 
@@ -139,10 +158,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                   </div>
 
                   {/* Card Footer Action */}
-                  <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                  <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between" onClick={(e) => e.stopPropagation()}>
                     <button
                       type="button"
-                      onClick={() => setSelectedService(service)}
+                      onClick={() => onSelectService(service)}
                       className="text-xs font-semibold text-sky-400 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
                     >
                       <span>{isAr ? 'اكتشف الخدمة' : 'Explore Service'}</span>
@@ -152,7 +171,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                     <button
                       type="button"
                       onClick={() => onSelectServiceForEstimate(isAr ? service.titleAr : service.title)}
-                      className="text-[11px] font-medium text-slate-400 hover:text-sky-300 bg-slate-800/60 px-2.5 py-1 rounded-lg border border-slate-700/60 cursor-pointer"
+                      className="text-[11px] font-medium text-[#c4ccd4] hover:text-sky-300 bg-slate-850 px-2.5 py-1 rounded-lg border border-slate-700/60 cursor-pointer"
                     >
                       {isAr ? 'طلب تسعير' : 'Get Quote'}
                     </button>
@@ -163,103 +182,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           })}
         </div>
       </div>
-
-      {/* Service Detailed Modal */}
-      {selectedService && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
-          <div className="relative w-full max-w-2xl bg-[#0B1120] border border-slate-700 rounded-2xl overflow-hidden shadow-2xl max-h-[90vh] flex flex-col">
-            {/* Header with Image */}
-            <div className="relative h-48 bg-slate-900">
-              <img
-                src={selectedService.image}
-                alt={isAr ? selectedService.titleAr : selectedService.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-black/40 to-transparent" />
-
-              <button
-                type="button"
-                onClick={() => setSelectedService(null)}
-                className="absolute top-4 right-4 rtl:right-auto rtl:left-4 p-2 rounded-full bg-black/60 hover:bg-black text-white border border-white/20 transition-colors"
-                aria-label="Close"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              <div className="absolute bottom-4 left-6 rtl:left-auto rtl:right-6">
-                <span className="text-xs font-mono font-bold text-sky-400 bg-black/60 px-2.5 py-0.5 rounded border border-sky-400/30">
-                  {selectedService.number} — {isAr ? selectedService.categoryAr : selectedService.category}
-                </span>
-                <h3 className="text-2xl font-bold text-white mt-1">
-                  {isAr ? selectedService.titleAr : selectedService.title}
-                </h3>
-              </div>
-            </div>
-
-            {/* Modal Body */}
-            <div className="p-6 overflow-y-auto space-y-6 flex-1">
-              <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
-                  {isAr ? 'عن الخدمة والقيمة المضافة' : 'Overview & Business Value'}
-                </h4>
-                <p className="text-sm text-slate-200 leading-relaxed">
-                  {isAr ? selectedService.fullDescAr : selectedService.fullDesc}
-                </p>
-              </div>
-
-              {/* Deliverables */}
-              <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
-                  {isAr ? 'المخرجات الرئيسية للخدمة' : 'Key Deliverables & Capabilities'}
-                </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  {(isAr ? selectedService.keyDeliverablesAr : selectedService.keyDeliverables).map(
-                    (item, i) => (
-                      <div
-                        key={i}
-                        className="flex items-center gap-2 p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 text-xs text-slate-300"
-                      >
-                        <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                        <span>{item}</span>
-                      </div>
-                    )
-                  )}
-                </div>
-              </div>
-
-              {/* Business Impact Note */}
-              <div className="p-4 rounded-xl bg-[#3477BC]/10 border border-[#3477BC]/30 text-xs text-sky-200">
-                <div className="font-bold mb-1">{isAr ? 'الأثر التجاري المتوقع:' : 'Commercial Impact:'}</div>
-                <div>{isAr ? selectedService.businessImpactAr : selectedService.businessImpact}</div>
-              </div>
-            </div>
-
-            {/* Modal Actions */}
-            <div className="p-4 bg-[#080B14] border-t border-slate-800 flex items-center justify-between gap-3">
-              <button
-                type="button"
-                onClick={() => setSelectedService(null)}
-                className="px-4 py-2 rounded-xl text-xs text-slate-400 hover:text-white"
-              >
-                {isAr ? 'إغلاق' : 'Close'}
-              </button>
-
-              <button
-                type="button"
-                onClick={() => {
-                  const title = isAr ? selectedService.titleAr : selectedService.title;
-                  setSelectedService(null);
-                  onSelectServiceForEstimate(title);
-                }}
-                className="px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#3477BC] to-[#2559CC] hover:brightness-110 flex items-center gap-2"
-              >
-                <span>{isAr ? 'طلب هذه الخدمة لمشروعي' : 'Inquire for Your Project'}</span>
-                {isAr ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };
