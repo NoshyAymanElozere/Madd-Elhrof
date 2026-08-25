@@ -126,14 +126,14 @@ export default function App() {
             onSelectServiceForEstimate={(sTitle) => handleOpenEstimator(sTitle)}
           />
 
-          {/* 6. Featured Work / Portfolio */}
+          {/* 6. Featured Work / Portfolio
           <PortfolioSection
             lang={lang}
             onRequestProject={(projectTitle) => {
               setPrefilledScope(`Interested in a project similar to: "${projectTitle}"`);
               scrollToSection('contact');
             }}
-          />
+          /> */}
 
           {/* 7. Documented Case Studies (Client, Challenge, Solution, Result) */}
           <FeaturedCaseStudies
