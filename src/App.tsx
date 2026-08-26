@@ -136,13 +136,13 @@ export default function App() {
           /> */}
 
           {/* 7. Documented Case Studies (Client, Challenge, Solution, Result) */}
-          <FeaturedCaseStudies
+          {/* <FeaturedCaseStudies
             lang={lang}
             onSelectProjectForEstimate={(pName) => {
               setPrefilledScope(`Inquiry inspired by Case Study: "${pName}"`);
               scrollToSection('contact');
             }}
-          />
+          /> */}
 
           {/* 8. About Section (Mission, Vision, Philosophy & Team Photos) */}
           <AboutSection lang={lang} />
@@ -157,7 +157,7 @@ export default function App() {
           <TestimonialsSection lang={lang} />
 
           {/* 12. Industries We Serve (8 Compact Sectors) */}
-          <IndustriesSection lang={lang} />
+          {/* <IndustriesSection lang={lang} /> */}
 
           {/* 13. Call to Action (CTA) */}
           <CTASection
