@@ -175,6 +175,20 @@ export const Footer: React.FC<FooterProps> = ({ lang, onOpenEstimator }) => {
                 </button>
               </form>
             )}
+
+            {/* Address & Phone */}
+            <div className="mt-6">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-2">
+                {isAr ? 'العنوان' : 'Address'}
+              </h4>
+              <p className="text-xs text-slate-400">
+                {isAr ? 'الرياض، حي الخالدية، طريق الأصيل' : 'Riyadh, Al Khalidiyah, Al Asil Road'}
+              </p>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-white mt-4 mb-2">
+                {isAr ? 'رقم الجوال' : 'Mobile'}
+              </h4>
+              <p className="text-xs text-slate-400">0535368514</p>
+            </div>
           </div>
         </div>
 
