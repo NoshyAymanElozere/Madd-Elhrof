@@ -53,6 +53,7 @@ export interface ServiceItem {
   fullDescAr: string;
   iconName: string;
   image: string;
+  gallery?: string[];
   keyDeliverables: string[];
   keyDeliverablesAr: string[];
   businessImpact: string;

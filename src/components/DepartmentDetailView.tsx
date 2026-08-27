@@ -112,27 +112,74 @@ export const DepartmentDetailView: React.FC<DepartmentDetailViewProps> = ({
                             </div>
                         </div>
 
-                        {/* RELATED PROJECTS FOR THIS DIVISION */}
-                        <div className="space-y-6">
-                            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-800 pb-4">
-                                <div>
-                                    <h2 className="text-xl sm:text-2xl font-bold text-white">
-                                        {isAr ? 'أعمالنا ومعارض إنتاج هذا القسم' : 'Division Portfolio & Deliveries'}
-                                    </h2>
-                                    <p className="text-xs sm:text-sm text-slate-400 mt-1">
-                                        {isAr
-                                            ? 'مجموعة من الأعمال الواقعية والصفقات المنفذة رسمياً في هذا التخصص لعملائنا.'
-                                            : 'Showcase of actual work engineered and custom properties produced in this niche.'}
-                                    </p>
+                        {/* DEPARTMENT GALLERY */}
+                        {service.gallery && service.gallery.length > 0 && (
+                            <div className="space-y-6">
+                                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-800 pb-4">
+                                    <div>
+                                        <h2 className="text-xl sm:text-2xl font-bold text-white">
+                                            {isAr ? 'معرض أعمال القسم' : 'Department Work Gallery'}
+                                        </h2>
+                                        <p className="text-xs sm:text-sm text-slate-400 mt-1">
+                                            {isAr
+                                                ? 'اضغط على أي صورة لعرضها بالحجم الكامل'
+                                                : 'Click any image to view full size'}
+                                        </p>
+                                    </div>
+                                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#3477BC]/10 border border-[#3477BC]/25 text-sky-400 text-xs font-semibold flex-shrink-0">
+                                        <span>{service.gallery.length} {isAr ? 'صورة' : 'Photos'}</span>
+                                    </div>
                                 </div>
 
-                                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#10b981]/10 border border-[#10b981]/25 text-emerald-400 text-xs font-semibold">
-                                    <span>{relatedProjects.length} {isAr ? 'أعمال منجزة حقيقية' : 'Official Deliveries'}</span>
+                                {/* Masonry-style responsive grid */}
+                                <div className="columns-2 sm:columns-3 gap-3 space-y-3">
+                                    {service.gallery.map((src, idx) => (
+                                        <div
+                                            key={idx}
+                                            onClick={() => setLightboxImage(src)}
+                                            className="group relative overflow-hidden rounded-xl cursor-zoom-in break-inside-avoid mb-3 bg-slate-900 border border-slate-800 hover:border-[#3477BC]/50 transition-all duration-300 shadow-md hover:shadow-[#3477BC]/10"
+                                        >
+                                            <img
+                                                src={src}
+                                                alt={`${isAr ? service.titleAr : service.title} — ${idx + 1}`}
+                                                loading="lazy"
+                                                className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                                                onError={(e) => {
+                                                    e.currentTarget.style.display = 'none';
+                                                }}
+                                            />
+                                            {/* hover overlay */}
+                                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                                                <div className="w-10 h-10 rounded-full bg-[#3477BC]/95 flex items-center justify-center text-white shadow-lg scale-90 group-hover:scale-100 transition-transform">
+                                                    <Maximize2 className="w-4 h-4" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
+                        )}
 
-                            {relatedProjects.length > 0 ? (
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6sm sm:gap-8">
+                        {/* RELATED PROJECTS FOR THIS DIVISION */}
+                        {relatedProjects.length > 0 && (
+                            <div className="space-y-6">
+                                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-800 pb-4">
+                                    <div>
+                                        <h2 className="text-xl sm:text-2xl font-bold text-white">
+                                            {isAr ? 'أعمالنا ومعارض إنتاج هذا القسم' : 'Division Portfolio & Deliveries'}
+                                        </h2>
+                                        <p className="text-xs sm:text-sm text-slate-400 mt-1">
+                                            {isAr
+                                                ? 'مجموعة من الأعمال الواقعية والصفقات المنفذة رسمياً في هذا التخصص لعملائنا.'
+                                                : 'Showcase of actual work engineered and custom properties produced in this niche.'}
+                                        </p>
+                                    </div>
+                                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#10b981]/10 border border-[#10b981]/25 text-emerald-400 text-xs font-semibold">
+                                        <span>{relatedProjects.length} {isAr ? 'أعمال منجزة حقيقية' : 'Official Deliveries'}</span>
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                                     {relatedProjects.map((project) => (
                                         <div
                                             key={project.id}
@@ -147,38 +194,28 @@ export const DepartmentDetailView: React.FC<DepartmentDetailViewProps> = ({
                                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                                 />
                                                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-black/10 to-transparent" />
-
-                                                {/* Hover Overlay Zoom Indicator */}
                                                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                                     <div className="w-12 h-12 rounded-full bg-[#3477BC]/95 flex items-center justify-center text-white shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
                                                         <Maximize2 className="w-5 h-5" />
                                                     </div>
                                                 </div>
-
-                                                {/* Top Client Badge */}
                                                 <div className="absolute top-4 left-4 rtl:left-auto rtl:right-4 bg-black/60 border border-white/10 px-3 py-1 rounded-lg text-xs font-bold text-sky-305 backdrop-blur-md">
                                                     {isAr ? project.clientAr : project.client}
                                                 </div>
                                             </div>
-
-                                            {/* Info Body */}
                                             <div className="p-5 flex-1 flex flex-col justify-between">
                                                 <div>
                                                     <div className="text-[11px] text-slate-400 flex items-center justify-between mb-2">
                                                         <span className="font-semibold text-sky-400">{isAr ? project.categoryAr : project.category}</span>
                                                         <span>{isAr ? project.industryAr : project.industry}</span>
                                                     </div>
-
                                                     <h3 className="text-base font-bold text-white mb-2 group-hover:text-sky-300 transition-colors">
                                                         {isAr ? project.titleAr : project.title}
                                                     </h3>
-
                                                     <p className="text-xs sm:text-sm text-slate-350 leading-relaxed line-clamp-3 mb-4">
                                                         {isAr ? project.shortDescAr : project.shortDesc}
                                                     </p>
                                                 </div>
-
-                                                {/* Result highlights */}
                                                 <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between">
                                                     <span className="text-[11px] text-slate-400">
                                                         {isAr ? 'النتيجة المحققة:' : 'Achieved Metric:'}
@@ -191,15 +228,8 @@ export const DepartmentDetailView: React.FC<DepartmentDetailViewProps> = ({
                                         </div>
                                     ))}
                                 </div>
-                            ) : (
-                                <div className="text-center py-16 bg-[#0B1120] border border-slate-800 rounded-3xl">
-                                    <Briefcase className="w-12 h-12 text-slate-650 mx-auto mb-4" />
-                                    <p className="text-base text-slate-400">
-                                        {isAr ? 'جاري رفع صور ومشاريع العمل الرسمية لهذا القسم قريباً.' : 'Official commercial portfolio files are being uploaded shortly.'}
-                                    </p>
-                                </div>
-                            )}
-                        </div>
+                            </div>
+                        )}
 
                     </div>
 

@@ -45,12 +45,12 @@ export const ClientsLogoWall: React.FC<ClientsLogoWallProps> = ({ lang }) => {
               {/* Top gradient highlight strip on hover */}
               <div className="absolute inset-x-6 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#3477BC]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-              {/* Logo container circle */}
-              <div className="w-20 h-20 rounded-full overflow-hidden mb-4 bg-slate-900 border border-slate-800 flex items-center justify-center p-0.5 group-hover:border-[#3477BC] transition-colors relative shadow-inner">
+              {/* Logo container */}
+              <div className="w-24 h-20 overflow-hidden mb-4 bg-white rounded-xl flex items-center justify-center p-2 group-hover:shadow-[0_0_12px_#3477BC33] transition-shadow relative">
                 <img
                   src={client.image}
                   alt={client.name}
-                  className="w-full h-full object-cover rounded-full transition-transform duration-300 group-hover:scale-105"
+                  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
                   onError={(e) => {
                     e.currentTarget.onerror = null;
