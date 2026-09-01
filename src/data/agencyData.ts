@@ -100,7 +100,7 @@ export const credibilityStats: CredibilityStat[] = [
 ];
 
 export const trustedClients: ClientLogo[] = [
-    { id: 'client-10', name: 'الشركة التقنية للصناعة الورقية', nameAr: 'الشركة التقنية للصناعة الورقية', industry: 'Paper Industry', industryAr: 'الصناعة الورقية', category: 'Industry', image: '/assets/clients/client-10.jpeg' },
+  { id: 'client-10', name: 'الشركة التقنية للصناعة الورقية', nameAr: 'الشركة التقنية للصناعة الورقية', industry: 'Paper Industry', industryAr: 'الصناعة الورقية', category: 'Industry', image: '/assets/clients/client-10.jpeg' },
   { id: 'client-9', name: 'الشركة التقنية للصناعة الورقية', nameAr: 'الشركة التقنية للصناعة الورقية', industry: 'Paper Industry', industryAr: 'الصناعة الورقية', category: 'Industry', image: '/assets/clients/client-9.jpeg' },
   { id: 'client-2', name: 'الشكولاتة الساخنة', nameAr: 'الشكولاتة الساخنة', industry: 'Food & Beverage', industryAr: 'الأغذية والمشروبات', category: 'F&B', image: '/assets/clients/client-2.png' },
   { id: 'client-3', name: 'المجلس الأعلى للقضاء', nameAr: 'المجلس الأعلى للقضاء', industry: 'Government', industryAr: 'القطاع الحكومي', category: 'Government', image: '/assets/clients/client-3.png' },
@@ -186,6 +186,7 @@ export const coreServices: ServiceItem[] = [
       '/assets/dept/print-bags-7.jpg', '/assets/dept/print-bags-8.jpg', '/assets/dept/print-bags-9.jpg',
       '/assets/dept/print-bags-27.jpg', '/assets/dept/print-bags-28.jpg', '/assets/dept/print-bags-29.jpg',
       '/assets/dept/print-bags-30.jpg',
+      '/assets/departments/print1.jpg', '/assets/departments/paper.jpg',
     ],
     businessImpact: 'Builds physical credibility and offline customer trust through tactile branding excellence.',
     businessImpactAr: 'يعزز حضورك المهني الملموس في اللقاءات الرسمية ويعكس جودة علامتك التجارية.',
@@ -217,6 +218,7 @@ export const coreServices: ServiceItem[] = [
       '/assets/dept/print-bags-10.jpg', '/assets/dept/print-bags-11.jpg', '/assets/dept/print-bags-12.jpg',
       '/assets/dept/print-bags-13.jpg', '/assets/dept/print-bags-14.jpg', '/assets/dept/print-bags-15.jpg',
       '/assets/dept/print-bags-16.jpg',
+      '/assets/departments/hardcover1.jpg',
     ],
     businessImpact: 'Reinforces customer loyalty and builds extreme brand prestige with first-class packaging.',
     businessImpactAr: 'يرفع من القيمة المدركة لمنتجاتك أمام العملاء ويعزز فخامة وجودة علامتك التجارية.',
@@ -248,6 +250,8 @@ export const coreServices: ServiceItem[] = [
       '/assets/dept/print-bags-17.jpg', '/assets/dept/print-bags-18.jpg', '/assets/dept/print-bags-19.jpg',
       '/assets/dept/print-bags-20.jpg', '/assets/dept/print-bags-21.jpg', '/assets/dept/print-bags-22.jpg',
       '/assets/dept/print-bags-23.jpg',
+      '/assets/departments/adv.jpg', '/assets/departments/adv2.jpg', '/assets/departments/adv3.jpg', '/assets/departments/adv4.jpg',
+      '/assets/departments/box1.jpg', '/assets/departments/box2.jpg', '/assets/departments/box5.jpg',
     ],
     businessImpact: 'Lowers product damage risk in shipping and expands retail unboxing visual footprint.',
     businessImpactAr: 'يحمي طلبات العملاء من التلف أثناء التوزيع ويعزز هوية علامتك التجارية على الطرق.',
@@ -277,6 +281,7 @@ export const coreServices: ServiceItem[] = [
     ],
     gallery: [
       '/assets/banner/banner-advartisment.jpg',
+      '/assets/departments/banner.jpg',
     ],
     businessImpact: 'Ensures maximum crowd sightlines and immediate promotional interest at physical sites.',
     businessImpactAr: 'يجذب انتباه الجمهور في المعارض والفعاليات ويوفر حلاً تسويقياً منخفض التكلفة لمواقعك.',
@@ -307,6 +312,8 @@ export const coreServices: ServiceItem[] = [
     gallery: [
       '/assets/banner/print1.jpg',
       '/assets/banner/print2.jpg',
+      '/assets/departments/banner2.jpg', '/assets/departments/banner3.jpg',
+      '/assets/departments/banner4.jpg', '/assets/departments/banner5.jpg',
     ],
     businessImpact: 'Captures street-level attention 24/7, driving organic walk-ins and physical branch authority.',
     businessImpactAr: 'يبرز مقرك التجاري 24 ساعة يومياً لجذب المارة وتعزيز مكانتك في السوق.',
