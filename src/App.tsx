@@ -151,6 +151,7 @@ export default function App() {
           <WhyChooseUs lang={lang} />
 
           {/* 10. Process / Workflow (5 Clear Steps) */}
+          
           <ProcessTimeline lang={lang} />
 
           {/* 11. Testimonials / Client Feedback */}

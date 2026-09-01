@@ -60,9 +60,9 @@ export const ClientsLogoWall: React.FC<ClientsLogoWallProps> = ({ lang }) => {
               </div>
 
               {/* Brand label */}
-              <div className="text-xs font-bold text-slate-300 group-hover:text-white transition-colors tracking-wide leading-tight line-clamp-2">
+              {/* <div className="text-xs font-bold text-slate-300 group-hover:text-white transition-colors tracking-wide leading-tight line-clamp-2">
                 {isAr ? client.nameAr : client.name}
-              </div>
+              </div> */}
             </div>
           ))}
         </div>

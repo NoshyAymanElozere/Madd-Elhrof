@@ -100,7 +100,8 @@ export const credibilityStats: CredibilityStat[] = [
 ];
 
 export const trustedClients: ClientLogo[] = [
-  { id: 'client-1', name: 'الشركة التقنية للصناعة الورقية', nameAr: 'الشركة التقنية للصناعة الورقية', industry: 'Paper Industry', industryAr: 'الصناعة الورقية', category: 'Industry', image: '/assets/clients/client-1.png' },
+    { id: 'client-10', name: 'الشركة التقنية للصناعة الورقية', nameAr: 'الشركة التقنية للصناعة الورقية', industry: 'Paper Industry', industryAr: 'الصناعة الورقية', category: 'Industry', image: '/assets/clients/client-10.jpeg' },
+  { id: 'client-9', name: 'الشركة التقنية للصناعة الورقية', nameAr: 'الشركة التقنية للصناعة الورقية', industry: 'Paper Industry', industryAr: 'الصناعة الورقية', category: 'Industry', image: '/assets/clients/client-9.jpeg' },
   { id: 'client-2', name: 'الشكولاتة الساخنة', nameAr: 'الشكولاتة الساخنة', industry: 'Food & Beverage', industryAr: 'الأغذية والمشروبات', category: 'F&B', image: '/assets/clients/client-2.png' },
   { id: 'client-3', name: 'المجلس الأعلى للقضاء', nameAr: 'المجلس الأعلى للقضاء', industry: 'Government', industryAr: 'القطاع الحكومي', category: 'Government', image: '/assets/clients/client-3.png' },
   { id: 'client-4', name: 'شعار المليون شجرة', nameAr: 'شعار المليون شجرة', industry: 'Environment', industryAr: 'البيئة والاستدامة', category: 'Initiative', image: '/assets/clients/client-4.jpeg' },
@@ -263,7 +264,7 @@ export const coreServices: ServiceItem[] = [
     fullDesc: 'High-resolution large-format graphics, vinyl banners, tradeshow roll-ups, outdoor canvas mesh, and customized sheet/die-cut labels with UV weather durability.',
     fullDescAr: 'اجذب انتباه جمهورك في كل مكان. نقدم حلول طباعة واسعة النطاق تشمل البنرات، الفليكس، والملصقات اللاصقة بمختلف الأحجام والخامات المقاومة للعوامل الجوية، لتضمن ظهور إعلاناتك بأعلى وضوح وجودة.',
     iconName: 'Layers',
-    image: '/assets/dept/logo-identity-15.jpg',
+    image: '/assets/banner/banner-advartisment.jpg',
     keyDeliverables: [
       'Retractable Roll-Up Signage',
       'High Tack Corporate Sticker sheets',
@@ -275,7 +276,7 @@ export const coreServices: ServiceItem[] = [
       'ملصقات مقاومة للمياه وأحوال الطقس الخارجية',
     ],
     gallery: [
-      '/assets/dept/print-bags-24.jpg', '/assets/dept/print-bags-25.jpg', '/assets/dept/print-bags-26.jpg',
+      '/assets/banner/banner-advartisment.jpg',
     ],
     businessImpact: 'Ensures maximum crowd sightlines and immediate promotional interest at physical sites.',
     businessImpactAr: 'يجذب انتباه الجمهور في المعارض والفعاليات ويوفر حلاً تسويقياً منخفض التكلفة لمواقعك.',
@@ -292,7 +293,7 @@ export const coreServices: ServiceItem[] = [
     fullDesc: 'Elevated structural showroom facade light-up signage, energy-efficient modern LED lit solid acrylic/metal letterings, and architectural signage setups.',
     fullDescAr: 'اجعل واجهة عملك تلمع طوال الوقت. نصمم وننفذ لوحات إعلانية مضيئة وعصرية (بارزة ومحفورة) بأعلى معايير الجودة وإضاءات LED الموفرة، لتمنح شركتك أو متجرك حضوراً بارزاً ولافتاً ليلاً ونهاراً.',
     iconName: 'Zap',
-    image: '/assets/dept/illuminated-signs-1.jpeg',
+    image: '/assets/banner/print2.jpg',
     keyDeliverables: [
       'Modern LED 3D Letters (Acrylic/Steel)',
       'Double-sided projecting light boxes',
@@ -304,10 +305,8 @@ export const coreServices: ServiceItem[] = [
       'واجهات مبانٍ ومعارض تجارية مضيئة بالكامل',
     ],
     gallery: [
-      '/assets/dept/illuminated-signs-1.jpeg', '/assets/dept/illuminated-signs-2.jpeg',
-      '/assets/dept/illuminated-signs-3.jpeg', '/assets/dept/illuminated-signs-4.jpeg',
-      '/assets/dept/illuminated-signs-5.jpeg', '/assets/dept/illuminated-signs-6.jpeg',
-      '/assets/dept/illuminated-signs-7.jpeg',
+      '/assets/banner/print1.jpg',
+      '/assets/banner/print2.jpg',
     ],
     businessImpact: 'Captures street-level attention 24/7, driving organic walk-ins and physical branch authority.',
     businessImpactAr: 'يبرز مقرك التجاري 24 ساعة يومياً لجذب المارة وتعزيز مكانتك في السوق.',
